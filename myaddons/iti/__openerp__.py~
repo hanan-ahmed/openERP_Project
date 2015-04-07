@@ -20,11 +20,11 @@
 ##############################################################################
 {
     'name' : 'ITI Students',
-    'version' : '1.1',
-    'author' : 'ITI ASSIUT',
-    'category' : 'Open source track in Assiut', # not important
-    'summary':'ITI Students data model ',
+    'version' : '1.0',
+    'author' : 'OpenERP SA',
+    'summary' :'iti student details',
     'description' : """
+                        
 Accounting and Financial Management.
 ====================================
 
@@ -50,11 +50,8 @@ for a particular financial year and for preparation of vouchers there is a modul
     """,
     'website': 'http://www.openerp.com',
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : [],
-    'data': [
-        'iti/iti_view.xml',
-       
-    ],
+    'depends' : ['base_setup', 'product', 'analytic', 'process', 'board', 'edi'],
+    'data': ['iti_view.xml'],
     'js': [
         'static/src/js/account_move_reconciliation.js',
         'static/src/js/account_move_line_quickadd.js',
@@ -93,3 +90,4 @@ for a particular financial year and for preparation of vouchers there is a modul
     'auto_install': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

@@ -20,22 +20,42 @@
 ##############################################################################
 {
     'name' : 'ITI Students',
-    'version' : '1.1',
-    'author' : 'ITI ASSIUT',
-    'category' : 'Open source track in Assiut', # not important
-    'summary':'ITI Students data model ',
-    'description' : """ Small test for module
+    'version' : '1.0',
+    'author' : 'OpenERP SA',
+    'summary' :'iti student details',
+    'description' : """
+                        
+Accounting and Financial Management.
+====================================
+
+Financial and accounting module that covers:
+--------------------------------------------
+    * General Accounting
+    * Cost/Analytic accounting
+    * Third party accounting
+    * Taxes management
+    * Budgets
+    * Customer and Supplier Invoices
+    * Bank statements
+    * Reconciliation process by partner
+
+Creates a dashboard for accountants that includes:
+--------------------------------------------------
+    * List of Customer Invoice to Approve
+    * Company Analysis
+    * Graph of Treasury
+
+The processes like maintaining of general ledger is done through the defined financial Journals (entry move line orgrouping is maintained through journal) 
+for a particular financial year and for preparation of vouchers there is a module named account_voucher.
     """,
-    'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['hr','base'],
-    'data': [
-        'iti_view.xml',
-        'security/iti_security.xml',
-         'security/ir.model.access.csv'
-       
-    ],
 
     'installable': True,
     'auto_install': False,
+    'depends':['hr'],
+    'data':[
+        'iti_view.xml',
+
+    ]
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
