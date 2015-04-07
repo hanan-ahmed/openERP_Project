@@ -1,0 +1,114 @@
+<openerp>
+    <data>
+         <record id="iti_student_data" model="ir.ui.view">
+             <field name="name">iti.student.data</field>
+             <field name="model">iti.student</field>
+             <field name="arch" type="xml">
+                <form string="ITI Students" version="7.0">
+                 <sheet>
+                     <field name="img" widget="image"/>
+                                <group>
+                                    <group string='Basic info'>
+                                          <field name='name'/>
+                                          <field name='age'/>
+                                          <field name='salary' attrs="{'invisible':[('accepted','!=',True)]}" />
+                                    </group>
+                                     <group string='Education'>
+                                          <field name='faculty'/>
+                                          <field name='grade'/>
+                                          <field name='graduation_year'/>
+                                           <field name='department_id'/>
+
+                                         <field name='skills' >
+                                                <tree>
+                                                    <field name='subject' on_change="_change_department(subject)"/>
+                                                    <!--<field name='description'/>-->
+
+
+                                                </tree>
+                                         </field>
+                                    </group>
+                                </group>
+                      <notebook>
+                          <page string="Info">
+                             <group string="Info">
+                                  <field name="info"/>
+                             </group>
+                          </page>
+                          <page string="Accepted">
+                              <group string="Accepted">
+                                   <field name="accepted"/>
+                              </group>
+
+                          </page>
+                     </notebook>
+                 </sheet>
+             </form>
+            </field>
+         </record>
+
+
+        <record id="show_student_info" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">iti.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="iti_main" name="ITI"/>
+        <menuitem id="ITI_INFORMATION" name="ITI_Students"  parent="iti_main"/>
+        <menuitem id="student_data"  name="Students" action="show_student_info" parent="ITI_INFORMATION"/>
+
+
+        <record id="iti_department_info" model="ir.ui.view">
+             <field name="name">iti.department.data</field>
+             <field name="model">iti.departments</field>
+             <field name="arch" type="xml">
+                <form string="ITI Departments" version="7.0">
+                 <sheet>
+                                <group>
+                                    <group string='Basic info'>
+                                          <field name='name'/>
+                                          <field name='description'/>
+                                             <field name="skills_ids">
+                                                        <tree>
+                                                            <field name="subject"/>
+                                                            <field name="description"/>
+
+                                                        </tree>
+                                             </field>
+                                          <!--<field name='students_ids'/>-->
+                                    </group>
+
+                                </group>
+                 </sheet>
+             </form>
+            </field>
+         </record>
+
+
+        <record id="show_department_info" model="ir.actions.act_window">
+            <field name="name">Departments</field>
+            <field name="res_model">iti.departments</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--<menuitem id="Students_info" name="ITI_Students"  parent="iti_main"/>-->
+        <menuitem id="dept_data"  name="Departments" action="show_department_info" parent="ITI_INFORMATION"/>
+
+            <record id="view_employee_form_inherit" model="ir.ui.view">
+             <field name="name">view.employee.form.inherit</field>
+             <field name="model">hr.employee</field>
+                <field name="inherit_id" ref="hr.view_employee_form"></field>
+             <field name="arch" type="xml">
+
+                 <xpath expr="//field[@name='address_id']" position="before">
+                     <field name="emp_code" required="1"/>
+                 </xpath>
+
+             </field>
+            </record>
+
+    </data>
+</openerp>
