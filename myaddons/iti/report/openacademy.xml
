@@ -4,7 +4,7 @@
 <report id="report_sessions"
 name="iti session report"
 string="Session Report"
-model="iti.session"
+model="iti.hr_extend"
 file="iti/report/session.mako"
 report_type="webkit"/>
 </data>
