@@ -194,7 +194,7 @@ class iti_product(orm.Model):
         'category_id': fields.many2one('iti.category', string='الباب'),
         'subcategory_id': fields.many2one('iti.subcategory', string='المجموعه'),
         'subsubcategory_id': fields.many2one('iti.subsubcategory', string='القسم'),
-        'supplier_id': fields.many2many('iti.supplier', string='الممول'),
+        'supplier_id': fields.many2many('iti.supplier', string='المورد'),
         'warehouse_id': fields.many2many('iti.warehouse'),
 
     }
