@@ -279,7 +279,7 @@
             <field name="name">iti.supplier.tree</field>
             <field name="model">iti.supplier</field>
             <field name="arch" type="xml">
-                <tree string="الممول">
+                <tree string="المورد">
                     <field name="name"/>
                     <field name="desc"/>
                 </tree>
@@ -291,7 +291,7 @@
             <field name="name">iti.supplier.form</field>
             <field name="model">iti.supplier</field>
             <field name="arch" type="xml">
-                <form string="الممول" version="7.0">
+                <form string="المورد" version="7.0">
                     <sheet>
                         <group string="المعلومات الاساسية">
                             <field name="name"/>
@@ -304,14 +304,14 @@
             </field>
         </record>
         <record id="iti_supplier_action" model="ir.actions.act_window">
-            <field name="name">الممول</field>
+            <field name="name">المورد</field>
             <field name="res_model">iti.supplier</field>
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
         <menuitem id="top_iti" name="ITI"></menuitem>
         <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
-        <menuitem id="supplier_menu" name="الممول" parent="sid_menu" action="iti_supplier_action"></menuitem>
+        <menuitem id="supplier_menu" name="المورد" parent="sid_menu" action="iti_supplier_action"></menuitem>
 
 
     </data>
