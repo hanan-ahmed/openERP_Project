@@ -48,6 +48,29 @@ class hr_extend(orm.Model):
         'emp_code': fields.char('Employee Code')
 
     }
+class iti_warehouse(orm.Model):
+    _name = "iti.warehouse"
+
+    _columns = {
+        'name':fields.char('name'),
+        'address': fields.char("Address"),
+       'keeper_id': fields.many2one('res.users', "Keeper"),
+        'manager_id': fields.many2one('res.users', "Manager"),
+        'super_manager_id': fields.many2one('res.users', "Super Manager", domain="[('id','=','ref('ourwarehouse.group_iti_warehouse_supermanager')')]"),
+
+    }
+
+
+class iti_category(orm.Model):
+    _name = "iti.category"
+
+    _columns = {
+        'name': fields.char("name"),
+        'discription': fields.char("discription"),
+      	'code':fields.integer("code"),
+        # 'sub_category':fields.one2many('iti.subcategory', string="sub_category"),
+    }
+
 
 
 class workflowtest(orm.Model):
