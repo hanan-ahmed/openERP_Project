@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name' : 'ITI Students',
+    'name' : 'warehoseITI',
     'version' : '1.0',
     'author' : 'OpenERP SA',
     'summary' :'iti student details',

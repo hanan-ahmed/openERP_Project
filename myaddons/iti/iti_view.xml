@@ -123,15 +123,15 @@
 
 
        <record id="iti_subcategory_tree" model="ir.ui.view">
-            <field name="name">iti.subcategory.tree</field>
-            <field name="model">iti.subcategory</field>
-            <field name="arch" type="xml">
-                <tree string="المجموعه">
-                    <field name="name"/>
-                    <field name="desc"/>
-                </tree>
-            </field>
-        </record>
+           <field name="name">iti.subcategory.tree</field>
+           <field name="model">iti.subcategory</field>
+           <field name="arch" type="xml">
+               <tree string="المجموعه">
+                   <field name="name"/>
+                   <field name="desc"/>
+               </tree>
+           </field>
+       </record>
 
 
 
@@ -168,7 +168,7 @@
 
 
 
-          <record id="iti_subsubcategory_tree" model="ir.ui.view">
+        <record id="iti_subsubcategory_tree" model="ir.ui.view">
             <field name="name">iti.subsubcategory.tree</field>
             <field name="model">iti.subsubcategory</field>
             <field name="arch" type="xml">
