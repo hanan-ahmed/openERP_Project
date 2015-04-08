@@ -53,7 +53,7 @@ for a particular financial year and for preparation of vouchers there is a modul
     'auto_install': False,
     'depends':['hr','report_webkit'],
     'data':[
-        'iti_view.xml','iti_workflow',
+        'iti_view.xml','iti_workflow.xml',
         'report/openacademy.xml'
 
     ]
