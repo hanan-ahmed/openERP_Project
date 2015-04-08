@@ -189,7 +189,7 @@ class iti_product(orm.Model):
         'qtyin': fields.integer('الكمية الداخلة'),
         'qtyout': fields.integer('الكمية الخارجة'),
         'code': fields.integer('الكود', size=2, required=True),
-        'net_code': fields.function(_calc_code, string='المرجع', store=True),
+        'net_code': fields.function(_calc_code, string='المرجع', store=True,type='char'),
         'desc': fields.text('الوصف'),
         'category_id': fields.many2one('iti.category', string='الباب'),
         'subcategory_id': fields.many2one('iti.subcategory', string='المجموعه'),
