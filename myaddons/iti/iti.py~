@@ -181,8 +181,8 @@ class iti_product(orm.Model):
     _columns = {
         'name': fields.char('اﻻسم'),
         'price': fields.float('السعر'),
-        'productdate': fields.date('تاريخ اﻻنتاج'),
-        'expirdate': fields.date('تاريخ اﻻنتهاء'),
+        'productdate': fields.date('تاريخ الدخول'),
+        'expirdate': fields.date('تاريخ الخروج'),
         'minqty': fields.integer('اقل كمية مسموحة'),
         'maxqty': fields.integer('اكثر كمية مسموحة'),
         'qtyin': fields.integer('الكمية الداخلة'),
