@@ -26,10 +26,6 @@
         <record model="workflow.activity" id="act_under_review">
             <field name="wkf_id" ref="wkf_product" />
             <field name="name">waiting</field>
-<<<<<<< HEAD
-            <field name="split_mode">AND</field>
-=======
->>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
             <field name="kind">function</field>
             <field name="action">product_WaitingForReview()</field>
         </record>
@@ -37,13 +33,8 @@
         <record model="workflow.activity" id="act_approved">
             <field name="wkf_id" ref="wkf_product" />
             <field name="name">accepted</field>
-<<<<<<< HEAD
-            <field name="join_mode">AND</field>
-            <field name="kind">function</field>
-=======
             <field name="kind">function</field>
             <!--<field name="join_mode">AND</field>-->
->>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
             <field name="action">product_approved()</field>
         </record>
 

@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-
-{
-    'name': 'Warehouse_workflow ',
-    'version': '0.1',
-    'author': 'Hanan Mariam Rania Rehab Zeinab',
-    'website': '',
-    'summary': 'working in workflow',
-    'description': """
-Warehouse Module For OpenERP/odoo Project
-==========================
-
-testing workflow
-    """,
-    'depends': [],
-    'data': [
-        'iti_view.xml',
-        'warehouseModule_workflow.xml',
-       
-        ],
-
-}
-
-=======
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -43,20 +19,20 @@ testing workflow
 #
 ##############################################################################
 {
-    'name' : 'Simple Warehouse',
+    'name' : 'ITI Students',
     'version' : '1.1',
     'author' : 'ITI ASSIUT',
     'category' : 'Open source track in Assiut', # not important
     'summary':'ITI Students data model ',
     'description' : """ Small test for module
     """,
-    'depends' : ['hr','base','report_webkit'],
+    'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
+    'depends' : ['hr','base'],
     'data': [
         'iti_view.xml',
         'warehouseModule_workflow.xml',
         'security/iti_security.xml',
-         'security/ir.model.access.csv',
-            'report/openacademy.xml'
+         'security/ir.model.access.csv'
        
     ],
 
@@ -64,4 +40,3 @@ testing workflow
     'auto_install': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
->>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
