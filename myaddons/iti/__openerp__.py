@@ -26,12 +26,13 @@
     'summary':'ITI Students data model ',
     'description' : """ Small test for module
     """,
-    'depends' : ['hr','base'],
+    'depends' : ['hr','base','report_webkit'],
     'data': [
         'iti_view.xml',
         'warehouseModule_workflow.xml',
         'security/iti_security.xml',
-         'security/ir.model.access.csv'
+         'security/ir.model.access.csv',
+            'report/openacademy.xml'
        
     ],
 
