@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="iti_product_tree" model="ir.ui.view">
+            <field name="name">iti.product.tree</field>
+            <field name="model">iti.product</field>
+            <field name="arch" type="xml">
+                <tree string="Products">
+                    <field name="name"/>
+                    <field name="warehouse_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="iti_product_form" model="ir.ui.view">
+            <field name="name">iti.product.form</field>
+            <field name="model">iti.product</field>
+            <field name="arch" type="xml">
+                <form string="Product" version="7.0">
+                    <sheet>
+                        <header>
+                            <button name="product_received" string="Received" states="new"/>
+                            <button name="product_waiting_for_review" string="Waiting For Review" states="received"/>
+                            <button name="product_acceptance_member1" string="member 1" states="waiting"/>
+                            <button name="product_acceptance_member2" string="member 2" states="waiting"/>
+                            <button name="product_acceptance_member3" string="member 3" states="waiting"/>
+                            <button name="product_keeper_reg" string="Keeper Register" states="accepted"/>
+                            <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
+
+
+                            <field name="state" widget="statusbar" statusbar_visible="new,waiting,accepted,keeperreg,managerconfirm"/>
+
+                        </header>
+                        <group string="Basic Info">
+                            <field name="name"/>
+                            <field name="min"/>
+                            <field name="max"/>
+                            <field name="price"/>
+                            <field name="warehouse_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+         <record id="iti_warehouse_action" model="ir.actions.act_window">
+            <field name="name">ITI Warehouse</field>
+            <field name="res_model">iti.warehouse</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="top_warehouse" name="WareHouse"/>
+        <menuitem id="iti_warehouse_menu" name="ITI WareHouse" parent="top_warehouse"/>
+        <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
+                  action="iti_warehouse_action"/>
+
+
+        <record id="iti_product_action" model="ir.actions.act_window">
+            <field name="name">ITI Products</field>
+            <field name="res_model">iti.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="iti_product_view" name="Show products" parent="iti_warehouse_menu"
+                  action="iti_product_action"/>
+    </data>
+</openerp>

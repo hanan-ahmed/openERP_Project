@@ -1,6 +1,6 @@
 
 {
-    'name': 'Warehouse_workflow ',
+    'name': 'Warehouse workflow ',
     'version': '0.1',
     'author': 'Hanan Mariam Rania Rehab Zeinab',
     'website': '',
@@ -15,7 +15,7 @@ testing workflow
     'data': [
         'warehouseModule_view.xml',
         'warehouseModule_workflow.xml',
-        'security/warehouseModule_security.xml',
+        # 'security/warehouseModule_security.xml',
         ],
 
 }

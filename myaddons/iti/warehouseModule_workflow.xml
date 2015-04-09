@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="workflow" id="wkf_product">
+            <field name="name">iti.product.workflow</field>
+            <field name="osv">iti.product</field>
+            <field name="on_create" eval='True' />
+        </record>
+
+        <record model="workflow.activity" id="act_new">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="flow_start" eval='True' />
+            <field name="name">new</field>
+            <field name="kind">function</field>
+            <field name="action">product_new()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_received">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="name">received</field>
+            <field name="kind">function</field>
+            <field name="action">product_received()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_under_review">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="name">waiting</field>
+            <field name="split_mode">AND</field>
+            <field name="kind">function</field>
+            <field name="action">product_WaitingForReview()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_approved">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="name">accepted</field>
+            <field name="join_mode">AND</field>
+            <field name="kind">function</field>
+            <field name="action">product_approved()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_keeper_confirm">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="name">keeperreg</field>
+            <field name="kind">function</field>
+            <field name="action">product_keeper_register()</field>
+        </record>
+
+        <record model="workflow.activity" id="act_manager_confirm">
+            <field name="wkf_id" ref="wkf_product" />
+            <field name="name">managerconfirm</field>
+            <field name="kind">function</field>
+            <field name="action">product_manager_confirm()</field>
+        </record>
+
+
+        <record model="workflow.transition" id="t1">
+            <field name="act_from" ref="act_new" />
+            <field name="act_to" ref="act_received" />
+            <field name="signal">product_received</field>
+        </record>
+
+        <record model="workflow.transition" id="t2">
+            <field name="act_from" ref="act_received" />
+            <field name="act_to" ref="act_under_review" />
+            <field name="signal">product_waiting_for_review</field>
+        </record>
+
+        <record model="workflow.transition" id="t3">
+            <field name="act_from" ref="act_under_review" />
+            <field name="act_to" ref="act_approved" />
+            <field name="signal">product_acceptance_member1</field>
+        </record>
+
+        <record model="workflow.transition" id="t4">
+            <field name="act_from" ref="act_under_review" />
+            <field name="act_to" ref="act_approved" />
+            <field name="signal">product_acceptance_member2</field>
+        </record>
+
+        <record model="workflow.transition" id="t5">
+            <field name="act_from" ref="act_under_review" />
+            <field name="act_to" ref="act_approved" />
+            <field name="signal">product_acceptance_member3</field>
+        </record>
+
+        <record model="workflow.transition" id="t6">
+            <field name="act_from" ref="act_approved" />
+            <field name="act_to" ref="act_keeper_confirm" />
+            <field name="signal">product_keeper_reg</field>
+        </record>
+
+        <record model="workflow.transition" id="t7">
+            <field name="act_from" ref="act_keeper_confirm" />
+            <field name="act_to" ref="act_manager_confirm" />
+            <field name="signal">product_manager_confirm</field>
+        </record>
+
+    </data>
+</openerp>
+
+

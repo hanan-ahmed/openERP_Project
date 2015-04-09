@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <menuitem id="top_iti" name="ITI" />
 
         <menuitem id="side_menu" name="side" parent="top_iti"/>
@@ -57,10 +56,6 @@
                   action="iti_warehouse_action"/>
 
 
-
-
-
-
         <record id="iti_category_tree" model="ir.ui.view">
             <field name="name">iti.category.tree</field>
             <field name="model">iti.category</field>
@@ -94,9 +89,9 @@
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
-        <menuitem id="top_iti" name="ITI"></menuitem>
-        <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
-        <menuitem id="category_menu" name="الباب" parent="sid_menu" action="iti_category_action"></menuitem>
+        <menuitem id="top_iti" name="ITI"/>
+        <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
+        <menuitem id="category_menu" name="الباب" parent="sid_menu" action="iti_category_action"/>
 
 
 
@@ -139,9 +134,9 @@
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
-        <menuitem id="top_iti" name="ITI"></menuitem>
-        <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
-        <menuitem id="subcategory_menu" name="المجموعه" parent="sid_menu" action="iti_subcategory_action"></menuitem>
+        <menuitem id="top_iti" name="ITI"/>
+        <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
+        <menuitem id="subcategory_menu" name="المجموعه" parent="sid_menu" action="iti_subcategory_action"/>
 
 
 
@@ -185,15 +180,12 @@
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
-        <menuitem id="top_iti" name="ITI"></menuitem>
-        <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
+        <menuitem id="top_iti" name="ITI"/>
+        <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
         <menuitem id="subsubcategory_menu" name="القسم" parent="sid_menu"
-                  action="iti_subsubcategory_action"></menuitem>
+                  action="iti_subsubcategory_action"/>
 
-
-
-
-
+        
 
         <record id="iti_product_tree" model="ir.ui.view">
             <field name="name">iti.product.tree</field>
@@ -213,6 +205,19 @@
             <field name="arch" type="xml">
                 <form string="المنتج" version="7.0">
                     <sheet>
+			<header>
+                            <button name="product_received" string="Received" states="new"/>
+                            <button name="product_waiting_for_review" string="Waiting For Review" states="received"/>
+                            <button name="product_acceptance_member1" string="member 1" states="waiting"/>
+                            <button name="product_acceptance_member2" string="member 2" states="waiting"/>
+                            <button name="product_acceptance_member3" string="member 3" states="waiting"/>
+                            <button name="product_keeper_reg" string="Keeper Register" states="accepted"/>
+                            <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
+
+
+                            <field name="state" widget="statusbar" statusbar_visible="new,waiting,accepted,keeperreg,managerconfirm"/>
+
+                        </header>
                         <group>
                             <group string="المعلومات اﻻساسية">
                                 <field name="name"/>
@@ -239,20 +244,18 @@
                 </form>
             </field>
         </record>
+
+
+
         <record id="iti_product_action" model="ir.actions.act_window">
             <field name="name">المنتج</field>
             <field name="res_model">iti.product</field>
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
-        <menuitem id="top_iti" name="ITI"></menuitem>
-        <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
-        <menuitem id="product_menu" name="المنتج" parent="sid_menu" action="iti_product_action"></menuitem>
-
-
-
-
-
+        <menuitem id="top_iti" name="ITI"/>
+        <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
+        <menuitem id="product_menu" name="المنتج" parent="sid_menu" action="iti_product_action"/>
 
 
 
@@ -290,9 +293,9 @@
             <field name="view_type">form</field>
             <field name="view_model">form</field>
         </record>
-        <menuitem id="top_iti" name="ITI"></menuitem>
-        <menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>
-        <menuitem id="supplier_menu" name="المورد" parent="sid_menu" action="iti_supplier_action"></menuitem>
+        <menuitem id="top_iti" name="ITI"/>
+        <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
+        <menuitem id="supplier_menu" name="المورد" parent="sid_menu" action="iti_supplier_action"/>
 
 
     </data>
