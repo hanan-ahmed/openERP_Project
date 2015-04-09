@@ -315,6 +315,7 @@
                                 <field name="category_id" string='الباب'/>
                                 <field name="subcategory_id"/>
                                 <field name="subsubcategory_id"/>
+                                <field name="warehouse_id"/>
                                 <field name="minqty"/>
                                 <field name="maxqty"/>
                                 <field name="qtyin"/>
