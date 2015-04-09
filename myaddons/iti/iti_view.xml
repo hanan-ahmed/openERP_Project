@@ -53,6 +53,108 @@
             </field>
         </record>
 
+
+
+<!--this is warehose model**************************************-->
+
+   <record id="iti_warehouse_tree" model="ir.ui.view">
+            <field name="name">iti.warehouse.tree</field>
+            <field name="model">iti.warehouse</field>
+            <field name="arch" type="xml">
+                <tree string="المخزن">
+                    <field name="name"/>
+                    <field name="address"/>
+					<field name="date"/>
+                    <!--<field name="keeper_id"/>-->
+                    <!--<field name="manager_id"/>-->
+                    <!--<field name="super_manager_id"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="iti_warehouse_form" model="ir.ui.view">
+            <field name="name">iti.warehouse.form</field>
+            <field name="model">iti.warehouse</field>
+            <field name="arch" type="xml">
+                <form string="المخزن" version="7.0">
+                    <sheet>
+                        <group string="المعلومات الاساسية">
+                            <field name="name"/>
+                            <field name="address"/>
+							<field name="date"/>
+                            <!--<field name="keeper_id"/>-->
+                            <!--<field name="manager_id"/>-->
+                            <!--<field name="super_manager_id"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="iti_warehouse_action" model="ir.actions.act_window">
+            <field name="name">المخزن</field>
+            <field name="res_model">iti.warehouse</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="top_stock" name="المخزن"/>
+        <menuitem id="stock_menu" name="stock" parent="top_stock"/>
+        <menuitem id="iti_warehouse_view" name="WareHouses" parent="stock_menu" action="iti_warehouse_action"/>
+		<!--***********************************************************-->
+		<record model="ir.ui.view" id="iti_employees_tree">
+        <field name="name">iti.employees.tree</field>
+        <field name="model">iti.employees</field>
+        <field name="arch" type="xml">
+            <tree string="الموظفين">
+                 <field name="pic"/>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="salary" />
+                <field name="gender" required="1"/>
+                <field name="check"/>
+                <field name="user_system" required="1"/>
+              <field name="warehouse_id"/>
+            </tree>
+        </field>
+        </record>
+
+   <record id="iti_employees_form" model="ir.ui.view">
+        <field name="name">iti.employees.form</field>
+        <field name="model">iti.employees</field>
+        <field name="arch" type="xml">
+            <form string="الموظفين" version="7.0">
+
+                <group string="المعلومات الاساسية">
+                    <field name="pic"/>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="salary" attrs="{'invisible': [('gender', '=', 'f')]}"/>
+                    <field name="gender" required="1" />
+					<field name="user_system" required="1"/>
+					<field name="check"/>
+					<field name="warehouse_id"/>
+
+              </group>
+            </form>
+        </field>
+    </record>
+    <record id="iti_employees_action" model="ir.actions.act_window">
+        <field name="name">iti.employees.action</field>
+        <field name="res_model">iti.employees</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="top_emp" name="الموظفين"/>
+    <menuitem id="emp_menu" name="employee" parent="top_emp"/>
+    <menuitem id="iti_employees_view" name="الموظفين" parent="emp_menu" action="iti_employees_action"/>
+<!--***********************************************************-->
+
+
+
+
+
         <record id="iti_product_form" model="ir.ui.view">
             <field name="name">iti.product.form</field>
             <field name="model">iti.product</field>
@@ -86,18 +188,10 @@
 
 
 
-            <record id="iti_warehouse_action" model="ir.actions.act_window">
-            <field name="name">ITI Warehouse</field>
-            <field name="res_model">iti.warehouse</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+         
 
 
-        <menuitem id="top_warehouse" name="WareHouse"/>
-        <menuitem id="iti_warehouse_menu" name="ITI WareHouse" parent="top_warehouse"/>
-        <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
-                  action="iti_warehouse_action"/>
+       
 
 
         <record id="iti_product_action" model="ir.actions.act_window">

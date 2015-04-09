@@ -16,8 +16,43 @@ class hr_extend(orm.Model):
 
 
 
+class iti_employees(orm.Model):
+    gender = [('f', 'female'), ('m', 'male')]
+    _name = 'iti.employees'
+    _columns = {
+        'name': fields.char('الاسم'),
+        'age': fields.integer('العمر'),
+        'salary': fields.integer('المرتب'),
+        'gender': fields.selection(gender, 'النوع'),
+        'check': fields.boolean('الفحص'),
+        'pic': fields.binary('الصورة',widget='Image'),
+        'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
+        'user_system':fields.many2one("res.users","User System"),
+
+    }
+
+
+
 class iti_warehouse(orm.Model):
     _name = "iti.warehouse"
+
+    _columns = {
+        'name':fields.char('الاسم',size=20,required=True),
+        'address': fields.char("العنوان",size=150,required=True),
+		'date': fields.date('تاريخ الانشاء',required=True),
+        'product_ids':fields.one2many('iti.product','warehouse_id', string="المنتجات"),
+     
+
+    }
+#class iti_category(orm.Model):
+ #   _name = "iti.category"
+
+ #   _columns = {
+ #       'name': fields.char("name"),
+ #       'discription': fields.char("discription"),
+ #     	'code':fields.integer("code"),
+        # 'sub_category':fields.one2many('iti.subcategory', string="sub_category"),
+  #  }
 
 
 
