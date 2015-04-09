@@ -1,8 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_iti_user,access.iti.user,model_iti_student,iti_user,1,0,0,0
-access_iti_manager,access.iti.manager,model_iti_student,iti_manager,1,1,1,0
-access_iti_manager,access.iti.manager,model_hr_employee,iti_manager,1,1,1,0
-access_my,access.my,model_iti_employees,my,0,0,0,0
+access_iti_manager,access.iti.manager,model_iti_employees,iti_manager,1,1,1,0
+access_iti_user,access.iti.user,model_iti_employees,iti_user,1,0,0,0
 access_my2,access.my2,model_iti_employees,my2,0,0,0,0
 access_my3,access.my3.mderm5aazn,model_iti_employees,my3,0,0,0,0
 access_my4,access.my4,model_iti_employees,my4,0,0,0,0

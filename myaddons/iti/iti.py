@@ -15,7 +15,7 @@ class iti_warehouse(orm.Model):
 		'date': fields.date('تاريخ الانشاء'),
        'keeper_id': fields.many2one('res.users', "امين المخزن"),
         'manager_id': fields.many2one('res.users', "مديرالمخزن"),
-        'super_manager_id': fields.many2one('res.users', "رئيس المخازن", domain="[('id','=','ref('ourwarehouse.group_iti_warehouse_supermanager')')]"),
+        'super_manager_id': fields.many2one('res.users', "رئيس المخازن"),
 
     }
 
@@ -138,21 +138,21 @@ class iti_product(orm.Model):
          return True
 
 
-#
-# class iti_employees(orm.Model):
-#     gender = [('f', 'female'), ('m', 'male')]
-#     _name = 'iti.employees'
-#     _columns = {
-#         'name': fields.char('الاسم'),
-#         'age': fields.integer('العمر'),
-#         'salary': fields.integer('المرتب'),
-#         'gender': fields.selection(gender, 'النوع'),
-#         'check': fields.boolean('الفحص'),
-#         'pic': fields.binary('الصورة',widget='Image'),
-#         'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
-#         'user_system':fields.many2one("res.users","User System"),
-#
-#     }
+
+ class iti_employees(orm.Model):
+     gender = [('f', 'female'), ('m', 'male')]
+     _name = 'iti.employees'
+     _columns = {
+         'name': fields.char('الاسم'),
+         'age': fields.integer('العمر'),
+        'salary': fields.integer('المرتب'),
+         'gender': fields.selection(gender, 'النوع'),
+         'check': fields.boolean('الفحص'),
+         'pic': fields.binary('الصورة',widget='Image'),
+         'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
+         'user_system':fields.many2one("res.users","User System"),
+
+     }
 
 
 class hr_extend(orm.Model):

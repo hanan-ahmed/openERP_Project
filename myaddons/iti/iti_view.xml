@@ -9,35 +9,35 @@
 
 
             <record id="view_employee_form_inherit" model="ir.ui.view">
-             <field name="name">view.employee.form.inherit</field>
-             <field name="model">hr.employee</field>
-                <field name="inherit_id" ref="hr.view_employee_form"></field>
+				    <field name="name">view.employee.form.inherit</field>
+				    <field name="model">hr.employee</field>
+				    <field name="inherit_id" ref="hr.view_employee_form"></field>
 
-             <field name="arch" type="xml">
+				 	<field name="arch" type="xml">
 
-                 <!--<button name="set_committe" type="object"  string="Set as committe member"/>-->
+				     <!--<button name="set_committe" type="object"  string="Set as committe member"/>-->
 
-                 <xpath expr="//field[@name='address_id']" position="before">
-                     <field name="emp_code" required="1"/>
+					     <xpath expr="//field[@name='address_id']" position="before">
+					         <field name="emp_code" required="1"/>
 
-                 </xpath>
+					     </xpath>
 
-                      <xpath expr="//field[@name='address_id']" position="after">
+					          <xpath expr="//field[@name='address_id']" position="after">
 
-                     <field name="committe"/>
-                 </xpath>
+					         <field name="committe"/>
+					     </xpath>
 
-                 <xpath expr="//field[@name='committe']" position="after">
+					     <xpath expr="//field[@name='committe']" position="after">
 
-                     <field name="warehouse_id"/>
-                 </xpath>
-                 <xpath expr="//field[@name='warehouse_id']" position="after">
+					         <field name="warehouse_id"/>
+					     </xpath>
+					     <xpath expr="//field[@name='warehouse_id']" position="after">
 
-                     <field name="user_system"/>
-                 </xpath>
+					         <field name="user_system"/>
+					     </xpath>
 
-             </field>
-            </record>
+					 </field>
+		        </record>
 
 
 
@@ -63,18 +63,10 @@
         </record>
 
 
-            <record id="iti_warehouse_action" model="ir.actions.act_window">
-            <field name="name">ITI Warehouse</field>
-            <field name="res_model">iti.warehouse</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+           
 
 
-        <menuitem id="top_warehouse" name="WareHouse"/>
-        <menuitem id="iti_warehouse_menu" name="ITI WareHouse" parent="top_warehouse"/>
-        <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
-                  action="iti_warehouse_action"/>
+       
 
 
         <record id="iti_product_action" model="ir.actions.act_window">
@@ -381,8 +373,7 @@
         <!--<menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>-->
         <menuitem id="supplier_menu" name="المورد" parent="sid_menu" action="iti_supplier_action"></menuitem>
 
-
-   <record id="iti_warehouse_tree" model="ir.ui.view">
+        <record id="iti_warehouse_tree" model="ir.ui.view">
             <field name="name">iti.warehouse.tree</field>
             <field name="model">iti.warehouse</field>
             <field name="arch" type="xml">
@@ -429,53 +420,53 @@
         <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
                   action="iti_warehouse_action"/>
 
-        	<!--<record model="ir.ui.view" id="iti_employees_tree">-->
-        <!--<field name="name">iti.employees.tree</field>-->
-        <!--<field name="model">iti.employees</field>-->
-        <!--<field name="arch" type="xml">-->
-            <!--<tree string="الموظفين">-->
-                 <!--<field name="pic"/>-->
-                <!--<field name="name"/>-->
-                <!--<field name="age"/>-->
-                <!--<field name="salary" />-->
-                <!--<field name="gender" required="1"/>-->
-                <!--<field name="check"/>-->
-                <!--<field name="user_system" required="1"/>-->
-              <!--<field name="warehouse_id"/>-->
-            <!--</tree>-->
-        <!--</field>-->
-        <!--</record>-->
+        <record model="ir.ui.view" id="iti_employees_tree">
+            <field name="name">iti.employees.tree</field>
+            <field name="model">iti.employees</field>
+            <field name="arch" type="xml">
+                <tree string="الموظفين">
+                     <field name="pic"/>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="salary" />
+                    <field name="gender" required="1"/>
+                    <field name="check"/>
+                    <field name="user_system" required="1"/>
+                  <field name="warehouse_id"/>
+                </tree>
+            </field>
+        </record>
 
-   <!--<record id="iti_employees_form" model="ir.ui.view">-->
-        <!--<field name="name">iti.employees.form</field>-->
-        <!--<field name="model">iti.employees</field>-->
-        <!--<field name="arch" type="xml">-->
-            <!--<form string="الموظفين" version="7.0">-->
+       <record id="iti_employees_form" model="ir.ui.view">
+            <field name="name">iti.employees.form</field>
+            <field name="model">iti.employees</field>
+            <field name="arch" type="xml">
+                <form string="الموظفين" version="7.0">
 
-                <!--<group string="المعلومات الاساسية">-->
-                    <!--<field name="pic"/>-->
-                    <!--<field name="name"/>-->
-                    <!--<field name="age"/>-->
-                    <!--<field name="salary" attrs="{'invisible': [('gender', '=', 'f')]}"/>-->
-                    <!--<field name="gender" required="1" />-->
-					<!--<field name="user_system" required="1"/>-->
-					<!--<field name="check"/>-->
-					<!--<field name="warehouse_id"/>-->
+                    <group string="المعلومات الاساسية">
+                        <field name="pic"/>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="salary" attrs="{'invisible': [('gender', '=', 'f')]}"/>
+                        <field name="gender" required="1" />
+                        <field name="user_system" required="1"/>
+                        <field name="check"/>
+                        <field name="warehouse_id"/>
 
-              <!--</group>-->
-            <!--</form>-->
-        <!--</field>-->
-    <!--</record>-->
-    <!--<record id="iti_employees_action" model="ir.actions.act_window">-->
-        <!--<field name="name">iti.employees.action</field>-->
-        <!--<field name="res_model">iti.employees</field>-->
-        <!--<field name="view_type">form</field>-->
-        <!--<field name="view_mode">tree,form</field>-->
-    <!--</record>-->
-    <!--<menuitem id="top_emp" name="الموظفين"/>-->
-    <!--<menuitem id="emp_menu" name="employee" parent="top_emp"/>-->
-    <!--<menuitem id="iti_employees_view" name="الموظفين" parent="emp_menu" action="iti_employees_action"/>-->
-<!--&lt;!&ndash;***********************************************************&ndash;&gt;-->
+                  </group>
+                </form>
+            </field>
+        </record>
+        <record id="iti_employees_action" model="ir.actions.act_window">
+            <field name="name">iti.employees.action</field>
+            <field name="res_model">iti.employees</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="top_emp" name="الموظفين"/>
+        <menuitem id="emp_menu" name="employee" parent="top_emp"/>
+        <menuitem id="iti_employees_view" name="الموظفين" parent="emp_menu" action="iti_employees_action"/>
+    <!--***********************************************************-->
 
 
 

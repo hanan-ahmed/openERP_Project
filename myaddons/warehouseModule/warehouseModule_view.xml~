@@ -44,7 +44,18 @@
                 </form>
             </field>
         </record>
-        
+         <record id="iti_warehouse_action" model="ir.actions.act_window">
+            <field name="name">ITI Warehouse</field>
+            <field name="res_model">iti.warehouse</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="top_warehouse" name="WareHouse"/>
+        <menuitem id="iti_warehouse_menu" name="ITI WareHouse" parent="top_warehouse"/>
+        <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
+                  action="iti_warehouse_action"/>
 
 
         <record id="iti_product_action" model="ir.actions.act_window">
