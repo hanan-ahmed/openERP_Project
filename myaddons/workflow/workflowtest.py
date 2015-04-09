@@ -27,7 +27,7 @@ class workflowtest(orm.Model):
          return True
 
 
-     def mymod_assigned(self, cr, uid, ids):
+    def mymod_assigned(self, cr, uid, ids):
          self.write(cr, uid, ids, {'state': 'assigned'})
          return True
     
