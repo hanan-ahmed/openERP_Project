@@ -1,17 +1,98 @@
 from openerp.osv import orm, fields
 
+<<<<<<< HEAD
+=======
+class hr_extend(orm.Model):
+    _name = 'hr.employee'
+    _inherit= 'hr.employee'
+    _columns = {
+        'emp_code':fields.char('Employee Code'),
+        'committe':fields.boolean('Member in committe')
+    }
+    def set_committe(self,cr,uid,ids,context=None):
+        pass
+
+
+
+class iti_employees(orm.Model):
+    gender = [('f', 'female'), ('m', 'male')]
+    _name = 'iti.employees'
+    _columns = {
+        'name': fields.char('الاسم'),
+        'age': fields.integer('العمر'),
+        'salary': fields.integer('المرتب'),
+        'gender': fields.selection(gender, 'النوع'),
+        'check': fields.boolean('الفحص'),
+        'pic': fields.binary('الصورة',widget='Image'),
+        'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
+        'user_system':fields.many2one("res.users","User System"),
+
+    }
+
+
+
+>>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
 class iti_warehouse(orm.Model):
     _name = "iti.warehouse"
 
     _columns = {
-        'name':fields.char('الاسم'),
-        'address': fields.char("العنوان"),
-		'date': fields.date('تاريخ الانشاء'),
-       'keeper_id': fields.many2one('res.users', "امين المخزن"),
-        'manager_id': fields.many2one('res.users', "مديرالمخزن"),
-        'super_manager_id': fields.many2one('res.users', "رئيس المخازن", domain="[('id','=','ref('ourwarehouse.group_iti_warehouse_supermanager')')]"),
+        'name':fields.char('الاسم',size=20,required=True),
+        'address': fields.char("العنوان",size=150,required=True),
+		'date': fields.date('تاريخ الانشاء',required=True),
+        'product_ids':fields.one2many('iti.product','warehouse_id', string="المنتجات"),
+     
 
     }
+<<<<<<< HEAD
+=======
+#class iti_category(orm.Model):
+ #   _name = "iti.category"
+
+ #   _columns = {
+ #       'name': fields.char("name"),
+ #       'discription': fields.char("discription"),
+ #     	'code':fields.integer("code"),
+        # 'sub_category':fields.one2many('iti.subcategory', string="sub_category"),
+  #  }
+
+
+
+
+    def product_new(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'new'})
+     return True
+
+
+    def product_received(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'received'})
+     return True
+
+
+    def product_WaitingForReview(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'waiting'})
+     return True
+
+
+    def product_approved(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'accepted'})
+     return True
+
+
+    def product_keeper_register(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'keeperreg'})
+     return True
+
+
+    def product_manager_confirm(self, cr, uid, ids):
+     self.write(cr, uid, ids, {'state': 'managerconfirm'})
+     return True
+
+
+
+
+
+
+>>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
 
 class iti_category(orm.Model):
     _name = 'iti.category'
@@ -87,6 +168,7 @@ class iti_product(orm.Model):
         'subcategory_id': fields.many2one('iti.subcategory', string='المجموعه'),
         'subsubcategory_id': fields.many2one('iti.subsubcategory', string='القسم'),
         'supplier_id': fields.many2many('iti.supplier', string='المورد'),
+<<<<<<< HEAD
         'warehouse_id': fields.many2many('iti.warehouse'),
         'state':fields.selection(string="State",selection=[
             ('new','New'),
@@ -97,6 +179,17 @@ class iti_product(orm.Model):
             ('managerconfirm','Manager Confirmation'),
         ], readonly=True),
 
+=======
+        'warehouse_id': fields.many2one('iti.warehouse'),
+		'state':fields.selection(string="State",selection=[
+				    ('new','New'),
+				    ('received','Received'),
+				    ('waiting','Waiting For Review'),
+				    ('accepted','Accepted'),
+				    ('keeperreg','Keeper Registration'),
+				    ('managerconfirm','Manager Confirmation'),
+				], readonly=True),
+>>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
 
     }
 

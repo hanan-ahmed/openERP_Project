@@ -1,62 +1,131 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
         <menuitem id="top_iti" name="ITI" />
+=======
+<?xml version="1.0" encoding="utf-8" ?>
 
-        <menuitem id="side_menu" name="side" parent="top_iti"/>
+<openerp>
+    <data>
+
+>>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
+
+        <menuitem id="iti_main" name="ITI"/>
+        <menuitem id="ITI_INFORMATION" name="Employees of system"  parent="iti_main"/>
+
+
+            <record id="view_employee_form_inherit" model="ir.ui.view">
+             <field name="name">view.employee.form.inherit</field>
+             <field name="model">hr.employee</field>
+                <field name="inherit_id" ref="hr.view_employee_form"></field>
+
+             <field name="arch" type="xml">
+
+                 <!--<button name="set_committe" type="object"  string="Set as committe member"/>-->
+
+                 <xpath expr="//field[@name='address_id']" position="before">
+                     <field name="emp_code" required="1"/>
+
+                 </xpath>
+
+                      <xpath expr="//field[@name='address_id']" position="after">
+
+                     <field name="committe"/>
+                 </xpath>
+
+             </field>
+            </record>
 
 
 
+        <record id="show_Emp_info" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
-   <record id="iti_warehouse_tree" model="ir.ui.view">
-            <field name="name">iti.warehouse.tree</field>
-            <field name="model">iti.warehouse</field>
+
+        <menuitem id="emp_data"  name="Employees" action="show_Emp_info" parent="ITI_INFORMATION"/>
+
+        <record id="iti_product_tree" model="ir.ui.view">
+            <field name="name">iti.product.tree</field>
+            <field name="model">iti.product</field>
             <field name="arch" type="xml">
-                <tree string="المخزن">
+                <tree string="Products">
                     <field name="name"/>
-                    <field name="address"/>
-					<field name="date"/>
-                    <field name="keeper_id"/>
-                    <field name="manager_id"/>
-                    <field name="super_manager_id"/>
+                    <field name="warehouse_id"/>
                 </tree>
             </field>
         </record>
 
-        <record id="iti_warehouse_form" model="ir.ui.view">
-            <field name="name">iti.warehouse.form</field>
-            <field name="model">iti.warehouse</field>
+        <record id="iti_product_form" model="ir.ui.view">
+            <field name="name">iti.product.form</field>
+            <field name="model">iti.product</field>
             <field name="arch" type="xml">
-                <form string="المخزن" version="7.0">
+                <form string="Product" version="7.0">
                     <sheet>
-                        <group string="المعلومات الاساسية">
+                        <header>
+                            <button name="product_received" string="Received" states="new"/>
+                            <button name="product_waiting_for_review" string="Waiting For Review" states="received"/>
+                            <button name="product_acceptance_member1" string="member 1" states="waiting"/>
+                            <button name="product_acceptance_member2" string="member 2" states="waiting"/>
+                            <button name="product_acceptance_member3" string="member 3" states="waiting"/>
+                            <button name="product_keeper_reg" string="Keeper Register" states="accepted"/>
+                            <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
+
+
+                            <field name="state" widget="statusbar" statusbar_visible="new,waiting,accepted,keeperreg,managerconfirm"/>
+
+                        </header>
+                        <group string="Basic Info">
                             <field name="name"/>
-                            <field name="address"/>
-							<field name="date"/>
-                            <field name="keeper_id"/>
-                            <field name="manager_id"/>
-                            <field name="super_manager_id"/>
+                            <field name="min"/>
+                            <field name="max"/>
+                            <field name="price"/>
+                            <field name="warehouse_id"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record id="iti_warehouse_action" model="ir.actions.act_window">
-            <field name="name">المخزن</field>
+
+
+            <record id="iti_warehouse_action" model="ir.actions.act_window">
+            <field name="name">ITI Warehouse</field>
             <field name="res_model">iti.warehouse</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
 
-        <menuitem id="top_warehouse" name="المخزن"/>
+        <menuitem id="top_warehouse" name="WareHouse"/>
         <menuitem id="iti_warehouse_menu" name="ITI WareHouse" parent="top_warehouse"/>
         <menuitem id="iti_warehouse_view" name="Show WareHouses" parent="iti_warehouse_menu"
                   action="iti_warehouse_action"/>
 
 
+<<<<<<< HEAD
         <record id="iti_category_tree" model="ir.ui.view">
+=======
+        <record id="iti_product_action" model="ir.actions.act_window">
+            <field name="name">ITI Products</field>
+            <field name="res_model">iti.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+            <menuitem id="iti_product_view" name="Show products" parent="iti_warehouse_menu"
+                  action="iti_product_action"/>
+
+
+
+
+ <record id="iti_category_tree" model="ir.ui.view">
+>>>>>>> 957362bdc0d17941c0bde818f55b84acc0e99947
             <field name="name">iti.category.tree</field>
             <field name="model">iti.category</field>
             <field name="arch" type="xml">
@@ -325,6 +394,8 @@
         <menuitem id="top_iti" name="ITI"/>
         <menuitem id="sid_menu" name="ITI" parent="top_iti"/>
         <menuitem id="supplier_menu" name="المورد" parent="sid_menu" action="iti_supplier_action"/>
+
+
 
 
     </data>

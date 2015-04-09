@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.module.category" id="iti_cat">
+            <field name="name">الرتبة </field>
+        </record>
+        <record model="res.groups" id="iti_user" >
+            <field name="name">أمين المخزن </field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record model="res.groups" id="iti_manager" >
+            <field name="name">رئيس المخازن </field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('iti_user'))]"/>
+        </record>
+		<record model="res.groups" id="my2" >
+            <field name="name"> مدير موظفين</field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('iti_manager'))]"/>
+        </record>
+		<record model="res.groups" id="my3" >
+            <field name="name">  مدير مخزن</field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('my2'))]"/>
+        </record>
+		<record model="res.groups" id="my4" >
+            <field name="name">  عضو من اعضاء اللجنة </field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('my3'))]"/>
+        </record>
+		<record model="res.groups" id="moazaf" >
+            <field name="name"> موظف</field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('my4'))]"/>
+        </record>
+		<record model="res.groups" id="mder" >
+            <field name="name"> مدير موظفين</field>
+            <field name="category_id" ref="iti_cat"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('moazaf'))]"/>
+        </record>
+
+    </data>
+</openerp>
