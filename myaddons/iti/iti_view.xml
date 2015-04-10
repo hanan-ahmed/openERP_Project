@@ -471,5 +471,29 @@
 
 
 
+         <record id="iti_search_form" model="ir.ui.view">
+      <field name="name">iti.search.form</field>
+      <field name="model">iti.search</field>
+      <field name="arch" type="xml">
+           <form string="بحث عن منتج" version="7.0">
+               <group>
+                <field name="search"/>
+                <field name="change" on_change="func(search,change)"/>
+                <field name="result"/>
+                <button name="iti_search_action" string="بحث آخر" type="action"/>
+               </group>
+           </form>
+      </field>
+    </record>
+        <record id="iti_search_action" model="ir.actions.act_window">
+                <field name="name">iti.search</field>
+                <field name="res_model">iti.search</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">form</field>
+       </record>
+            <menuitem id="top_iti" name="الأبواب"></menuitem>
+            <menuitem id="sid_menu" name="المصنفات" parent="top_iti"></menuitem>
+            <menuitem id="search" name="بحث" parent="sid_menu" action="iti_search_action" />
+
     </data>
 </openerp>

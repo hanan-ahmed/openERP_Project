@@ -167,3 +167,26 @@ class hr_extend(orm.Model):
     }
     def set_committe(self,cr,uid,ids,context=None):
         pass
+
+
+
+class iti_search(orm.Model):
+    _name = 'iti.search'
+    ch = [('name','اﻻسم'), ('code','الكود')]
+    _columns = {
+        'search': fields.char(string='اسم المنتج/كود المنتج',size=100),
+        'change': fields.selection(ch,string='بحث بواسطة',size=100),
+        'result': fields.text(string='النتيجة',size=500)
+    }
+    def func(self, cr, uid, ids, search , change , context=None):
+        record = self.pool.get('iti.product').search(cr, uid, [(change,'=',search)], context=context)
+        record=self.pool.get('iti.product').read(cr, uid,record , context=context)
+        if record:
+            v = {'result': 'اﻻسم:'+str(record[0]['name'])+',الحالة:'+str(record[0]['state'])
+            +',Code:'+str(record[0]['code'])
+            +',اكبر كمية مسموحة:'+str(record[0]['maxqty'])+',اقل كمية مسموحة:'+str(record[0]['minqty'])+
+                           ',السعر:'+str(record[0]['price'])
+            +',الوصف:'+str(record[0]['desc'])}
+        else:
+            v = {'result': ''}
+        return {'value':v}
