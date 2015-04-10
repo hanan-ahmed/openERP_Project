@@ -27,12 +27,13 @@
     'description' : """ Small test for module
     """,
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['hr','base'],
+    'depends' : ['hr','base','report_webkit'],
     'data': [
         'iti_view.xml',
         'warehouseModule_workflow.xml',
         'security/iti_security.xml',
-         'security/ir.model.access.csv'
+         'security/ir.model.access.csv',
+        'report/openacademy.xml'
        
     ],
 
