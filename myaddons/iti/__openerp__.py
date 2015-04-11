@@ -19,11 +19,11 @@
 #
 ##############################################################################
 {
-    'name' : 'ITI Students',
+    'name' : 'ITI warehouse system',
     'version' : '1.1',
-    'author' : 'ITI ASSIUT',
+    'author' : 'Hanan Mariam Rania Rehab Zaineb',
     'category' : 'Open source track in Assiut', # not important
-    'summary':'ITI Students data model ',
+    'summary':'ware house data model ',
     'description' : """ Small test for module
     """,
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],

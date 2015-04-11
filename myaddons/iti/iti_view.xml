@@ -167,10 +167,6 @@
 
 
 
-
-
-
-
         <record id="iti_subsubcategory_tree" model="ir.ui.view">
             <field name="name">iti.subsubcategory.tree</field>
             <field name="model">iti.subsubcategory</field>
@@ -229,51 +225,6 @@
         </record>
 
 
-        <!--<record id="iti_product_form" model="ir.ui.view">-->
-            <!--<field name="name">iti.product.form</field>-->
-            <!--<field name="model">iti.product</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<form string="المنتج" version="7.0">-->
-                    <!--<sheet>-->
-                        <!--<group>-->
-                            <!--<group string="المعلومات اﻻساسية">-->
-                                <!--<field name="name"/>-->
-                                <!--<field name="price"/>-->
-                                <!--<field name="productdate"/>-->
-                                <!--<field name="expirdate"/>-->
-                                <!--<field name="desc"/>-->
-                                <!--<field name="supplier_id"/>-->
-                            <!--</group>-->
-                            <!--<group string="معلومات اضافية">-->
-                                <!--<field name="category_id" string='الباب'/>-->
-                                <!--<field name="subcategory_id"/>-->
-                                <!--<field name="subsubcategory_id"/>-->
-                                <!--<field name="minqty"/>-->
-                                <!--<field name="maxqty"/>-->
-                                <!--<field name="qtyin"/>-->
-                                <!--<field name="qtyout"/>-->
-                                <!--<field name="code"/>-->
-                                <!--<field name="net_code"/>-->
-                            <!--</group>-->
-                        <!--</group>-->
-                    <!--</sheet>-->
-
-                <!--</form>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--<record id="iti_product_action" model="ir.actions.act_window">-->
-            <!--<field name="name">المنتج</field>-->
-            <!--<field name="res_model">iti.product</field>-->
-            <!--<field name="view_type">form</field>-->
-            <!--<field name="view_model">form</field>-->
-        <!--</record>-->
-        <!--<menuitem id="top_iti" name="ITI"></menuitem>-->
-        <!--<menuitem id="sid_menu" name="ITI" parent="top_iti"></menuitem>-->
-        <!--<menuitem id="product_menu" name="المنتج" parent="sid_menu" action="iti_product_action"></menuitem>-->
-
-
-
-
 
         <record id="iti_product_form" model="ir.ui.view">
             <field name="name">iti.product.form</field>
@@ -282,15 +233,28 @@
                 <form string="المنتج" version="7.0">
                     <sheet>
 			<header>
-                            <button name="product_received" string="Received" states="new"/>
-                            <button name="product_waiting_for_review" string="Waiting For Review" states="received"/>
-                            <button name="product_acceptance_member1" string="member 1" states="waiting"/>
-                            <button name="product_acceptance_member2" string="member 2" states="waiting"/>
-                            <button name="product_acceptance_member3" string="member 3" states="waiting"/>
-                            <button name="product_keeper_reg" string="Keeper Register" states="accepted"/>
-                            <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
+                           <!--  <button name="product_received" string="Received" states="new"/> -->
+                            <button name="product_recieved" string="استلام"  attrs="{'invisible':['|',('is_keeper','!=',True),('state','!=','new')]}"/>
 
+                           <!--  <button name="product_waiting_for_review" string="Waiting For Review" states="received"/> -->
+                           <button name="product_waiting_for_review" string="Waiting For Review"  attrs="{'invisible':['|',('is_supermanager','!=',True),('state','!=','received')]}"/>
 
+                            <!-- <button name="product_acceptance_member1" string="member 1" states="waiting"/> -->
+
+                             <button name="product_acceptance_member1" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member1','!=',True),('state','!=','waiting')]}"/>
+                            <!-- <button name="product_acceptance_member2" string="member 2" states="waiting"/> -->
+                            <button name="product_acceptance_member2" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member2','!=',True),('state','!=','waiting')]}"/>
+                            <!-- <button name="product_acceptance_member3" string="member 3" states="waiting"/> -->
+                            <button name="product_acceptance_member3" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member3','!=',True),('state','!=','waiting')]}"/>
+
+                            <!-- <button name="product_keeper_reg" string="Keeper Register" states="accepted"/> -->
+                            <button name="product_keeper_reg" string="Keeper Register"  attrs="{'invisible':['|',('is_keeper','!=',True),('state','!=','accepted')]}"/>
+
+                            <!-- <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
+ -->
+
+                           <button name="product_manager_confirm" string="Manager Confirm"  attrs="{'invisible':['|',('is_manager','!=',True),('state','!=','managerconfirm')]}"/>
+ 
                             <field name="state" widget="statusbar" statusbar_visible="new,waiting,accepted,keeperreg,managerconfirm"/>
 
                         </header>
@@ -302,6 +266,12 @@
                                 <field name="expirdate"/>
                                 <field name="desc"/>
                                 <field name="supplier_id"/>
+                                <field name="is_keeper" invisible="1"/>
+                                <field name="is_manager" invisible="1"/>
+                                <field name="is_supermanager" invisible="1"/>
+                                <field name="is_commitee_member1" invisible="1"/>
+                                <field name="is_commitee_member2" invisible="1"/>
+                                <field name="is_commitee_member3" invisible="1"/>
                             </group>
                             <group string="معلومات اضافية">
                                 <field name="category_id" string='الباب'/>
@@ -448,7 +418,7 @@
                         <field name="pic"/>
                         <field name="name"/>
                         <field name="age"/>
-                        <field name="salary" attrs="{'invisible': [('gender', '=', 'f')]}"/>
+                        <field name="salary" />
                         <field name="gender" required="1" />
                         <field name="user_system" required="1"/>
                         <field name="check"/>
