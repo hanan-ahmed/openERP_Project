@@ -237,23 +237,23 @@
                             <button name="product_recieved" string="استلام"  attrs="{'invisible':['|',('is_keeper','!=',True),('state','!=','new')]}"/>
 
                            <!--  <button name="product_waiting_for_review" string="Waiting For Review" states="received"/> -->
-                           <button name="product_waiting_for_review" string="Waiting For Review"  attrs="{'invisible':['|',('is_supermanager','!=',True),('state','!=','received')]}"/>
+                           <button name="product_waiting_for_review" string="تأكيد رئيس المخازن"  attrs="{'invisible':['|',('is_supermanager','!=',True),('state','!=','received')]}"/>
 
                             <!-- <button name="product_acceptance_member1" string="member 1" states="waiting"/> -->
 
-                             <button name="product_acceptance_member1" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member1','!=',True),('state','!=','waiting')]}"/>
+                             <button name="product_acceptance_member1" string="انتظار الفحص"  attrs="{'invisible':['|',('is_commitee_member1','!=',True),('state','!=','waiting')]}"/>
                             <!-- <button name="product_acceptance_member2" string="member 2" states="waiting"/> -->
-                            <button name="product_acceptance_member2" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member2','!=',True),('state','!=','waiting')]}"/>
+                            <button name="product_acceptance_member2" string="انتظار الفحص"  attrs="{'invisible':['|',('is_commitee_member2','!=',True),('state','!=','waiting')]}"/>
                             <!-- <button name="product_acceptance_member3" string="member 3" states="waiting"/> -->
-                            <button name="product_acceptance_member3" string="Waiting For Review"  attrs="{'invisible':['|',('is_commitee_member3','!=',True),('state','!=','waiting')]}"/>
+                            <button name="product_acceptance_member3" string="انتظار الفحص"  attrs="{'invisible':['|',('is_commitee_member3','!=',True),('state','!=','waiting')]}"/>
 
                             <!-- <button name="product_keeper_reg" string="Keeper Register" states="accepted"/> -->
-                            <button name="product_keeper_reg" string="Keeper Register"  attrs="{'invisible':['|',('is_keeper','!=',True),('state','!=','accepted')]}"/>
+                            <button name="product_keeper_reg" string="تسجيل امين المخزن المنتجات"  attrs="{'invisible':['|',('is_keeper','!=',True),('state','!=','accepted')]}"/>
 
                             <!-- <button name="product_manager_confirm" string="Manager Confirm" states="managerconfirm"/>
  -->
 
-                           <button name="product_manager_confirm" string="Manager Confirm"  attrs="{'invisible':['|',('is_manager','!=',True),('state','!=','managerconfirm')]}"/>
+                           <button name="product_manager_confirm" string="تأكيد رئيس المخزن"  attrs="{'invisible':['|',('is_manager','!=',True),('state','!=','managerconfirm')]}"/>
  
                             <field name="state" widget="statusbar" statusbar_visible="new,waiting,accepted,keeperreg,managerconfirm"/>
 
@@ -355,6 +355,9 @@
                     <field name="keeper_id"/>
                     <field name="manager_id"/>
                     <field name="super_manager_id"/>
+					<field name="is_commitee_member1" invisible="1"/>
+                    <field name="is_commitee_member2" invisible="1"/>
+                    <field name="is_commitee_member3" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -372,6 +375,9 @@
                             <field name="keeper_id"/>
                             <field name="manager_id"/>
                             <field name="super_manager_id"/>
+							<field name="is_commitee_member1" invisible="1"/>
+                            <field name="is_commitee_member2" invisible="1"/>
+                            <field name="is_commitee_member3" invisible="1"/>
                         </group>
                     </sheet>
                 </form>

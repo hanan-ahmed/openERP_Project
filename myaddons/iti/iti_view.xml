@@ -355,6 +355,9 @@
                     <field name="keeper_id"/>
                     <field name="manager_id"/>
                     <field name="super_manager_id"/>
+					<field name="commitee_member1" invisible="1"/>
+                    <field name="commitee_member2" invisible="1"/>
+                    <field name="commitee_member3" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -372,6 +375,9 @@
                             <field name="keeper_id"/>
                             <field name="manager_id"/>
                             <field name="super_manager_id"/>
+							<field name="commitee_member1" invisible="1"/>
+                            <field name="commitee_member2" invisible="1"/>
+                            <field name="commitee_member3" invisible="1"/>
                         </group>
                     </sheet>
                 </form>

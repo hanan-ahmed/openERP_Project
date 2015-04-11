@@ -16,7 +16,9 @@ class iti_warehouse(orm.Model):
        'keeper_id': fields.many2one('res.users', "امين المخزن"),
         'manager_id': fields.many2one('res.users', "مديرالمخزن"),
         'super_manager_id': fields.many2one('res.users', "رئيس المخازن"),
-
+        'commitee_member1': fields.many2one('res.users', "عضو اللجنه الاول"),
+        'commitee_member2': fields.many2one('res.users', "عضو اللجنه الثاني"),
+        'commitee_member3': fields.many2one('res.users', "عضو اللجنه الثالث"),
     }
 
 
@@ -65,6 +67,53 @@ class iti_supplier(orm.Model):
 class iti_product(orm.Model):
     _name = 'iti.product'
 
+    def check_keeper(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            keeper_id = product.warehouse_id.keeper_id.id
+        res[product.id] = (keeper_id == uid)
+        return res
+
+    def check_manager(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            manager_id = product.warehouse_id.manager_id.id
+        res[product.id] = (manager_id == uid)
+        return res
+
+
+    def check_supermanager(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            super_manager_id = product.warehouse_id.super_manager_id.id
+        res[product.id] = (super_manager_id == uid)
+        return res
+
+
+    def check_commitee_member1(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            commitee_member1_id = product.warehouse_id.commitee_member1_id.id
+        res[product.id] = (commitee_member1_id == uid)
+        return res
+
+    def check_commitee_member2(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            commitee_member2_id = product.warehouse_id.commitee_member2_id.id
+        res[product.id] = (commitee_member2_id == uid)
+        return res
+
+    def check_commitee_member3(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for product in self.browse(cr, uid, ids, context=context):
+            commitee_member3_id = product.warehouse_id.commitee_member3_id.id
+        res[product.id] = (commitee_member3_id == uid)
+        return res
+    
+
+
+
     def _calc_code(self, cr, uid, ids, name, arg, context=None):
         result = {}
         ids = self.search(cr, uid, [])
@@ -96,13 +145,19 @@ class iti_product(orm.Model):
         'subsubcategory_id': fields.many2one('iti.subsubcategory', string='القسم'),
         'supplier_id': fields.many2many('iti.supplier', string='المورد'),
         'warehouse_id': fields.many2one('iti.warehouse',string='المخزن'),
+        'is_keeper': fields.function(check_keeper, type='boolean', store=False),
+        'is_manager': fields.function(check_manager, type='boolean', store=False),
+        'is_supermanager': fields.function(check_supermanager, type='boolean', store=False),
+        'is_commitee_member1': fields.function(check_commitee_member1, type='boolean', store=False),
+        'is_commitee_member2': fields.function(check_commitee_member2, type='boolean', store=False),
+        'is_commitee_member3': fields.function(check_commitee_member3, type='boolean', store=False),
 		'state':fields.selection(string="State",selection=[
-				    ('new','New'),
-				    ('received','Received'),
-				    ('waiting','Waiting For Review'),
-				    ('accepted','Accepted'),
-				    ('keeperreg','Keeper Registration'),
-				    ('managerconfirm','Manager Confirmation'),
+				    ('new','جديد'),
+				    ('received','استلام'),
+				    ('waiting','انتظار الفحص'),
+				    ('accepted','مقبول'),
+				    ('keeperreg',"تسجيل امين المخزن للمنتجات "),
+				    ('managerconfirm','موافقه رئيس المخازن'),
 				], readonly=True),
 
     }
@@ -139,7 +194,7 @@ class iti_product(orm.Model):
 
 
 
- class iti_employees(orm.Model):
+class iti_employees(orm.Model):
      gender = [('f', 'female'), ('m', 'male')]
      _name = 'iti.employees'
      _columns = {
