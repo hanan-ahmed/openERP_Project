@@ -152,12 +152,12 @@ class iti_product(orm.Model):
         'is_commitee_member2': fields.function(check_commitee_member2, type='boolean', store=False),
         'is_commitee_member3': fields.function(check_commitee_member3, type='boolean', store=False),
 		'state':fields.selection(string="State",selection=[
-				    ('new','New'),
-				    ('received','Received'),
-				    ('waiting','Waiting For Review'),
-				    ('accepted','Accepted'),
-				    ('keeperreg','Keeper Registration'),
-				    ('managerconfirm','Manager Confirmation'),
+				    ('new','جديد'),
+				    ('received','استلام'),
+				    ('waiting','انتظار الفحص'),
+				    ('accepted','مقبول'),
+				    ('keeperreg',"تسجيل امين المخزن للمنتجات "),
+				    ('managerconfirm','موافقه رئيس المخازن'),
 				], readonly=True),
 
     }
@@ -194,7 +194,7 @@ class iti_product(orm.Model):
 
 
 
- class iti_employees(orm.Model):
+class iti_employees(orm.Model):
      gender = [('f', 'female'), ('m', 'male')]
      _name = 'iti.employees'
      _columns = {
