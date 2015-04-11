@@ -3,7 +3,7 @@
 <style type="text/css">${css}</style>
 </head>
 <body>
-<h1>${_("Session Report")}</h1>
+<h1>${u"Report"}</h1>
 % for session in objects:
 <h2>${ session.course.name } - ${ session.name }</h2>
 % if session.start_date:

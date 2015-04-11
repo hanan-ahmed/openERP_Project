@@ -89,13 +89,13 @@ class iti_product(orm.Model):
         'qtyin': fields.integer('الكمية الداخلة'),
         'qtyout': fields.integer('الكمية الخارجة'),
         'code': fields.integer('الكود', size=2, required=True),
-        'net_code': fields.function(_calc_code, string='المرجع', store=True,type='char'),
+        'net_code': fields.function(_calc_code, string='المرجع', store=True, method=True, type='char'),
         'desc': fields.text('الوصف'),
         'category_id': fields.many2one('iti.category', string='الباب'),
         'subcategory_id': fields.many2one('iti.subcategory', string='المجموعه'),
         'subsubcategory_id': fields.many2one('iti.subsubcategory', string='القسم'),
         'supplier_id': fields.many2many('iti.supplier', string='المورد'),
-        'warehouse_id': fields.many2one('iti.warehouse'),
+        'warehouse_id': fields.many2one('iti.warehouse',string='المخزن'),
 		'state':fields.selection(string="State",selection=[
 				    ('new','New'),
 				    ('received','Received'),
@@ -138,21 +138,21 @@ class iti_product(orm.Model):
          return True
 
 
-#
-# class iti_employees(orm.Model):
-#     gender = [('f', 'female'), ('m', 'male')]
-#     _name = 'iti.employees'
-#     _columns = {
-#         'name': fields.char('الاسم'),
-#         'age': fields.integer('العمر'),
-#         'salary': fields.integer('المرتب'),
-#         'gender': fields.selection(gender, 'النوع'),
-#         'check': fields.boolean('الفحص'),
-#         'pic': fields.binary('الصورة',widget='Image'),
-#         'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
-#         'user_system':fields.many2one("res.users","User System"),
-#
-#     }
+
+ class iti_employees(orm.Model):
+     gender = [('f', 'female'), ('m', 'male')]
+     _name = 'iti.employees'
+     _columns = {
+         'name': fields.char('الاسم'),
+         'age': fields.integer('العمر'),
+        'salary': fields.integer('المرتب'),
+         'gender': fields.selection(gender, 'النوع'),
+         'check': fields.boolean('الفحص'),
+         'pic': fields.binary('الصورة',widget='Image'),
+         'warehouse_id': fields.many2one('iti.warehouse', 'المخزن'),
+         'user_system':fields.many2one("res.users","User System"),
+
+     }
 
 
 class hr_extend(orm.Model):
@@ -167,3 +167,26 @@ class hr_extend(orm.Model):
     }
     def set_committe(self,cr,uid,ids,context=None):
         pass
+
+
+
+class iti_search(orm.Model):
+    _name = 'iti.search'
+    ch = [('name','اﻻسم'), ('code','الكود')]
+    _columns = {
+        'search': fields.char(string='اسم المنتج/كود المنتج',size=100),
+        'change': fields.selection(ch,string='بحث بواسطة',size=100),
+        'result': fields.text(string='النتيجة',size=500)
+    }
+    def func(self, cr, uid, ids, search , change , context=None):
+        record = self.pool.get('iti.product').search(cr, uid, [(change,'=',search)], context=context)
+        record=self.pool.get('iti.product').read(cr, uid,record , context=context)
+        if record:
+            v = {'result': 'اﻻسم:'+str(record[0]['name'])+',الحالة:'+str(record[0]['state'])
+            +',Code:'+str(record[0]['code'])
+            +',اكبر كمية مسموحة:'+str(record[0]['maxqty'])+',اقل كمية مسموحة:'+str(record[0]['minqty'])+
+                           ',السعر:'+str(record[0]['price'])
+            +',الوصف:'+str(record[0]['desc'])}
+        else:
+            v = {'result': ''}
+        return {'value':v}

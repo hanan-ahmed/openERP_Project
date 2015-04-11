@@ -95,7 +95,7 @@ class iti_product(orm.Model):
         'subcategory_id': fields.many2one('iti.subcategory', string='المجموعه'),
         'subsubcategory_id': fields.many2one('iti.subsubcategory', string='القسم'),
         'supplier_id': fields.many2many('iti.supplier', string='المورد'),
-        'warehouse_id': fields.many2one('iti.warehouse',string='warehouse_id'),
+        'warehouse_id': fields.many2one('iti.warehouse',string='المخزن'),
 		'state':fields.selection(string="State",selection=[
 				    ('new','New'),
 				    ('received','Received'),

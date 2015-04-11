@@ -9,35 +9,35 @@
 
 
             <record id="view_employee_form_inherit" model="ir.ui.view">
-             <field name="name">view.employee.form.inherit</field>
-             <field name="model">hr.employee</field>
-                <field name="inherit_id" ref="hr.view_employee_form"></field>
+				    <field name="name">view.employee.form.inherit</field>
+				    <field name="model">hr.employee</field>
+				    <field name="inherit_id" ref="hr.view_employee_form"></field>
 
-             <field name="arch" type="xml">
+				 	<field name="arch" type="xml">
 
-                 <!--<button name="set_committe" type="object"  string="Set as committe member"/>-->
+				     <!--<button name="set_committe" type="object"  string="Set as committe member"/>-->
 
-                 <xpath expr="//field[@name='address_id']" position="before">
-                     <field name="emp_code" required="1"/>
+					     <xpath expr="//field[@name='address_id']" position="before">
+					         <field name="emp_code" required="1"/>
 
-                 </xpath>
+					     </xpath>
 
-                      <xpath expr="//field[@name='address_id']" position="after">
+					          <xpath expr="//field[@name='address_id']" position="after">
 
-                     <field name="committe"/>
-                 </xpath>
+					         <field name="committe"/>
+					     </xpath>
 
-                 <xpath expr="//field[@name='committe']" position="after">
+					     <xpath expr="//field[@name='committe']" position="after">
 
-                     <field name="warehouse_id"/>
-                 </xpath>
-                 <xpath expr="//field[@name='warehouse_id']" position="after">
+					         <field name="warehouse_id"/>
+					     </xpath>
+					     <xpath expr="//field[@name='warehouse_id']" position="after">
 
-                     <field name="user_system"/>
-                 </xpath>
+					         <field name="user_system"/>
+					     </xpath>
 
-             </field>
-            </record>
+					 </field>
+		        </record>
 
 
 
@@ -307,6 +307,7 @@
                                 <field name="category_id" string='الباب'/>
                                 <field name="subcategory_id"/>
                                 <field name="subsubcategory_id"/>
+                                <field name="warehouse_id"/>
                                 <field name="minqty"/>
                                 <field name="maxqty"/>
                                 <field name="qtyin"/>
@@ -469,6 +470,30 @@
     <!--***********************************************************-->
 
 
+
+         <record id="iti_search_form" model="ir.ui.view">
+      <field name="name">iti.search.form</field>
+      <field name="model">iti.search</field>
+      <field name="arch" type="xml">
+           <form string="بحث عن منتج" version="7.0">
+               <group>
+                <field name="search"/>
+                <field name="change" on_change="func(search,change)"/>
+                <field name="result"/>
+                <button name="iti_search_action" string="بحث آخر" type="action"/>
+               </group>
+           </form>
+      </field>
+    </record>
+        <record id="iti_search_action" model="ir.actions.act_window">
+                <field name="name">iti.search</field>
+                <field name="res_model">iti.search</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">form</field>
+       </record>
+            <menuitem id="top_iti" name="الأبواب"></menuitem>
+            <menuitem id="sid_menu" name="المصنفات" parent="top_iti"></menuitem>
+            <menuitem id="search" name="بحث" parent="sid_menu" action="iti_search_action" />
 
     </data>
 </openerp>

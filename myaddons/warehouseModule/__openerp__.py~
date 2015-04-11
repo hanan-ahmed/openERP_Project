@@ -1,21 +1,22 @@
 
 {
-    'name': 'Warehouse Application',
+    'name': 'Warehouse workflow ',
     'version': '0.1',
-    'author': 'Group 5',
-    'website': 'http://www.coding4all.com',
-    'summary': 'just another project',
+    'author': 'Hanan Mariam Rania Rehab Zeinab',
+    'website': '',
+    'summary': 'ostrh yarb',
     'description': """
 Warehouse Module For OpenERP/odoo Project
 ==========================
 
-This is just another project
+testing workflow
     """,
-    'depends': [],
+    'depends': ['report_webkit'],
     'data': [
-        'ourwarehouse_view.xml',
-        'ourwarehouse_workflow.xml',
-        'security/warehouseModule_security.xml',
+        'warehouseModule_view.xml',
+        'warehouseModule_workflow.xml',
+	'report/openacademy.xml'
+        # 'security/warehouseModule_security.xml',
         ],
 
 }
